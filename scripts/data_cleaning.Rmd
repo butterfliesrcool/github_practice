@@ -1,0 +1,34 @@
+---
+title: "bug_data_cleaning"
+author: "Abby Robinson"
+date: "2026-10-28"
+output: html_document
+---
+
+```{r libraries}
+library(tidyr)
+library(dplyr)
+library(curl)
+library(stringr)
+library(ggplot2)
+library(lubridate)
+library(mgcv)
+library(gratia)
+library(glmmTMB)
+library(performance)
+library(car)
+library(emmeans)
+```
+
+```{r load csv files}
+
+# load bucket trap data
+bucket_trap_data <- curl("https://raw.githubusercontent.com/butterfliesrcool/github_practice/refs/heads/main/inputs/bucket_trap_data.csv")
+bug_data <- read.csv(bucket_trap_data, header = TRUE, sep = ",")
+head(bug_data)
+
+small <- subset(bug_data, Size %in% c("S"))
+
+write.csv(small,file='/Users/abbyrobinson/Desktop/Owens Lab/github_practice/outputs/small_data.csv', row.names=FALSE)
+
+```
